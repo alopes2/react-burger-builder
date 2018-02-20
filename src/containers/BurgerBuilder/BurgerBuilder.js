@@ -108,12 +108,13 @@ class BurgerBuilder extends Component {
 
         queryParams.push('price=' + this.state.totalPrice);
 
-        // this.props.history.push({
-        //     pathname: '/checkout',
-        //     search: '?' + queryParams.join('&')
-        // });
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryParams.join('&')
+        });
 
-        this.props.history.push('/checkout', this.state.ingredients, this.state.totalPrice)
+        //another way to pass params, but then has to be fetched from props.location.state
+        // this.props.history.push('/checkout', this.state.ingredients) 
     };
 
     render () {
