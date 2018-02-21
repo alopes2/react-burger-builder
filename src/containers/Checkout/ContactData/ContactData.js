@@ -91,9 +91,11 @@ class ContactData extends Component {
                         }
                     ]
                 },
-                value: ''
+                value: '',
+                valid: true
             }
         },
+        formIsValid: false,
         loading: false
     };
 
@@ -158,7 +160,13 @@ class ContactData extends Component {
         console.log(updatedFormElement);
 
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-        this.setState({orderForm: updatedOrderForm});
+
+        let formIsValid = true;
+        for(let input in updatedOrderForm) {
+            formIsValid = updatedOrderForm[input].valid && formIsValid;
+        }
+
+        this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
     };
 
     render() {
@@ -187,7 +195,7 @@ class ContactData extends Component {
                             errorMessage={'Please, enter a valid ' + formElement.id}
                             changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
                     ))}
-                    <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
+                    <Button btnType="Success" clicked={this.orderHandler} disabled={!this.state.formIsValid}>ORDER</Button>
                 </form>
             </React.Fragment>
         );
