@@ -91,24 +91,23 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        // alert('You continue!');
-        
+        // const queryParams = [];
 
-        const queryParams = [];
+        // for (let i in this.state.ingredients) {
+        //     queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        // }
 
-        for (let i in this.state.ingredients) {
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-        }
+        // queryParams.push('price=' + this.state.totalPrice);
 
-        queryParams.push('price=' + this.state.totalPrice);
-
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryParams.join('&')
-        });
+        // this.props.history.push({
+        //     pathname: '/checkout',
+        //     search: '?' + queryParams.join('&')
+        // });
 
         //another way to pass params, but then has to be fetched from props.location.state
         // this.props.history.push('/checkout', this.state.ingredients) 
+
+        this.props.history.push('/checkout');
     };
 
     render () {
