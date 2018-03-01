@@ -6,7 +6,10 @@ import axios from '../../../axios-orders';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import classes from './ContactData.css';
+
+import * as actions from '../../../store/actions/index';
 
 class ContactData extends Component {
     state = {
@@ -103,7 +106,7 @@ class ContactData extends Component {
     orderHandler = (event) => {
         event.preventDefault();
         console.log(this.props.ings);
-        this.setState({loading: true});
+        // this.setState({loading: true});
         const formData = {};
         for (let formElement in this.state.orderForm) {
             formData[formElement] = this.state.orderForm[formElement].value;
@@ -114,17 +117,18 @@ class ContactData extends Component {
             price: this.props.price,
             orderData: formData
         };
+        this.props.onOrderBurger(order);
 
-        axios.post('/orders.json', order)
-            .then(response => {
-                console.log(response);
-                this.setState({loading: false});
-                this.props.history.push('/');
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({loading: false});
-            });
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         console.log(response);
+        //         this.setState({loading: false});
+        //         this.props.history.push('/');
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //         this.setState({loading: false});
+        //     });
     };
 
     checkValidity (value, rules) {
@@ -220,6 +224,12 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onOrderBurger: (orderData) => dispatch(actions.purchaseBurgerStart(orderData))
+    }
+};
+
 //or distribute the props in the render method in Checkout.js
 // export default withRouter(ContactData);
-export default connect(mapStateToProps)(ContactData);
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
