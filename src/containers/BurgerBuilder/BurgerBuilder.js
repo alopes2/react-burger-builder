@@ -96,7 +96,7 @@ class BurgerBuilder extends Component {
 
         //another way to pass params, but then has to be fetched from props.location.state
         // this.props.history.push('/checkout', this.state.ingredients) 
-
+        this.props.onInitPurchase();
         this.props.history.push('/checkout');
     };
 
@@ -160,8 +160,9 @@ const mapDispatchToProps = dispatch => {
         onIngredientAdded: (ingredientName) => dispatch(actions.addIngredient(ingredientName)),
         onIngredientRemoved: (ingredientName) => dispatch(actions.removeIngredient(ingredientName)),
         onInitIngredients: () => dispatch(actions.initIngredients()),
+        onInitPurchase: () => dispatch(actions.purchaseInit())
     };
-}
+};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));
