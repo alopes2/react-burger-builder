@@ -18,7 +18,7 @@ class ContactData extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Your name'
+                    placeholder: 'Your Name'
                 },
                 value: '',
                 validation: {
@@ -31,7 +31,7 @@ class ContactData extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Your street'
+                    placeholder: 'Street'
                 },
                 value: '',
                 validation: {
@@ -44,13 +44,14 @@ class ContactData extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Your zip code'
+                    placeholder: 'ZIP Code'
                 },
                 value: '',
                 validation: {
                     required: true,
                     minLength: 5,
-                    maxLength: 5
+                    maxLength: 5,
+                    isNumeric: true
                 },
                 valid: false,
                 touched: false
@@ -59,7 +60,7 @@ class ContactData extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Your country'
+                    placeholder: 'Country'
                 },
                 value: '',
                 validation: {
@@ -69,14 +70,15 @@ class ContactData extends Component {
                 touched: false
             },
             email: {
-                elementType: 'email',
+                elementType: 'input',
                 elementConfig: {
-                    type: 'text',
-                    placeholder: 'Your email'
+                    type: 'email',
+                    placeholder: 'Your E-Mail'
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    isEmail: true
                 },
                 valid: false,
                 touched: false
@@ -85,13 +87,8 @@ class ContactData extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {
-                            value: 'fastest',
-                            displayValue: 'Fastest'
-                        },{
-                            value: 'cheapest',
-                            displayValue: 'Cheapest'
-                        }
+                        {value: 'fastest', displayValue: 'Fastest'},
+                        {value: 'cheapest', displayValue: 'Cheapest'}
                     ]
                 },
                 value: 'fastest',
@@ -99,8 +96,7 @@ class ContactData extends Component {
                 valid: true
             }
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     };
 
     orderHandler = (event) => {
