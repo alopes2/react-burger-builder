@@ -1,3 +1,10 @@
+## Info
+Project for studying React
+
+Enzyme API: http://airbnb.io/enzyme/docs/api/
+Jest Docs: https://facebook.github.io/jest/
+
+## Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
