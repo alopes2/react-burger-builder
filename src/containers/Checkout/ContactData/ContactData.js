@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from '../../../axios-orders';
 
@@ -103,7 +102,6 @@ class ContactData extends Component {
 
     orderHandler = (event) => {
         event.preventDefault();
-        console.log(this.props.ings);
         // this.setState({loading: true});
         const formData = {};
         for (let formElement in this.state.orderForm) {
@@ -116,7 +114,6 @@ class ContactData extends Component {
             orderData: formData,
             userId: this.props.userId
         };
-        console.log(this.props);
 
         this.props.onOrderBurger(order, this.props.token);
 
@@ -133,7 +130,6 @@ class ContactData extends Component {
     };
 
     inputChangedHandler = (event, inputIdentifier) => {
-        console.log(event.target.value);
 
         const updatedFormElement = updateObject(this.state.orderForm[inputIdentifier], {
             value: event.target.value,
@@ -145,7 +141,6 @@ class ContactData extends Component {
         const updatedOrderForm = updateObject(this.state.orderForm,{
             [inputIdentifier]: updatedFormElement
         });
-        console.log(updatedFormElement);
 
 
         let formIsValid = true;
